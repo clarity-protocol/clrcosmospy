@@ -5,21 +5,17 @@ import hashlib
 
 import ecdsa
 
-from cosmospy._wallet import DEFAULT_BECH32_HRP, privkey_to_address, privkey_to_pubkey
-import cosmospy.interfaces.any_pb2 as Any
-import cosmospy.interfaces.coin_pb2 as coin
-import cosmospy.interfaces.msg_send_pb2 as transfer
-import cosmospy.interfaces.pubkey_pb2 as pubkey
-import cosmospy.interfaces.tx_pb2 as tx
+from clrcosmospy._wallet import DEFAULT_BECH32_HRP, privkey_to_address, privkey_to_pubkey
+import clrcosmospy.interfaces.any_pb2 as Any
+import clrcosmospy.interfaces.score_send_pb2 as score
+import clrcosmospy.interfaces.pubkey_pb2 as pubkey
+import clrcosmospy.interfaces.tx_pb2 as tx
+import clrcosmospy.interfaces.coin_pb2 as coin
 
+class Score:
+    """A Clarty score.
 
-class Transaction:
-    """A Cosmos transaction.
-
-    After initialization, one or more token transfers can be added by
-    calling the `add_transfer()` method. Finally, call `get_pushable()`
-    to get a signed transaction that can be pushed to the `POST /txs`
-    endpoint of the Cosmos REST API.
+    Calls add_score or update_score to create a new score on target network
     """
 
     def __init__(
@@ -30,9 +26,9 @@ class Transaction:
             sequence: int,
             fee: int,
             gas: int,
-            fee_denom: str = "uatom",
+            fee_denom: str = "clrty",
             memo: str = "",
-            chain_id: str = "cosmoshub-4",
+            chain_id: str = "testnet",
             hrp: str = DEFAULT_BECH32_HRP,
     ) -> None:
         self._privkey = privkey
@@ -47,21 +43,31 @@ class Transaction:
         self._tx_body.memo = memo
         self._tx_raw = tx.TxRaw()
 
-    def add_transfer(
-            self, recipient: str, amount: int, denom: str = "uatom"
+    def add_score(
+            self, network: str, address: str, value: int, denom: str = "clrty"
     ) -> None:
-        msg = transfer.MsgSend()
-        msg.from_address = privkey_to_address(self._privkey, hrp=self._hrp)
-        msg.to_address = recipient
-        _amount = coin.Coin()
-        _amount.denom = denom
-        _amount.amount = str(amount)
-        msg.amount.append(_amount)
+        msg = score.ScoreSend()
+        msg.creator = privkey_to_address(self._privkey, hrp=self._hrp)
+        msg.network = network
+        msg.address = address
+        msg.value = value
         msg_any = Any.Any()
         msg_any.Pack(msg)
-        msg_any.type_url = "/cosmos.bank.v1beta1.MsgSend"
+        msg_any.type_url = "/clarityprotocol.protocol.protocol.MsgCreateScore"
         self._tx_body.messages.append(msg_any)
 
+    def update_score(
+            self, network: str, address: str, value: int, denom: str = "clrty"
+    ) -> None:
+        msg = score.ScoreSend()
+        msg.creator = privkey_to_address(self._privkey, hrp=self._hrp)
+        msg.network = network
+        msg.address = address
+        msg.value = value
+        msg_any = Any.Any()
+        msg_any.Pack(msg)
+        msg_any.type_url = "/clarityprotocol.protocol.protocol.MsgUpdateScore"
+        self._tx_body.messages.append(msg_any)
 
     def get_tx_bytes(self) -> str:
         self._tx_raw.body_bytes = self._tx_body.SerializeToString()

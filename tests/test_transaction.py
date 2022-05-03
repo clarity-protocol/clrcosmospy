@@ -2,7 +2,7 @@ from unittest.mock import Mock
 
 from ward import test
 
-from cosmospy import Transaction, seed_to_privkey
+from clrcosmospy import Transaction, seed_to_privkey
 
 
 @test("make transaction pushable to the HTTP API")  # type: ignore[no-redef]

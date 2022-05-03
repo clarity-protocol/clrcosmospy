@@ -2,8 +2,8 @@ from unittest import mock
 
 from ward import test
 
-from cosmospy import generate_wallet, privkey_to_address, privkey_to_pubkey, seed_to_privkey
-from cosmospy.typing import Wallet
+from clrcosmospy import generate_wallet, privkey_to_address, privkey_to_pubkey, seed_to_privkey
+from clrcosmospy.typing import Wallet
 
 test_vector: Wallet = {
     "seed": "todo",

@@ -1,0 +1,19 @@
+syntax = "proto3";
+package clarityprotocol.protocol.protocol;
+
+import "gogo.proto";
+
+
+option go_package = "github.com/clarity-protocol/protocol/x/protocol/types";
+
+
+// ScoreSend creates or update a wallet secore
+message ScoreSend {
+  option (gogoproto.equal)           = false;
+  option (gogoproto.goproto_getters) = false;
+
+  string   creator                      = 1 [(gogoproto.moretags) = "yaml:\"network\""];
+  string   network                      = 2 [(gogoproto.moretags) = "yaml:\"network\""];
+  string   address                      = 3 [(gogoproto.moretags) = "yaml:\"address\""];
+  string   value                        = 4 [(gogoproto.moretags) = "yaml:\"value\""];
+}

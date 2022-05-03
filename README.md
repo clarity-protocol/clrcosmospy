@@ -1,8 +1,8 @@
-[![Build Status](https://github.com/hukkin/cosmospy/workflows/Tests/badge.svg?branch=master)](https://github.com/hukkin/cosmospy/actions?query=workflow%3ATests+branch%3Amaster+event%3Apush)
-[![codecov.io](https://codecov.io/gh/hukkin/cosmospy/branch/master/graph/badge.svg)](https://codecov.io/gh/hukkin/cosmospy)
-[![PyPI version](https://img.shields.io/pypi/v/cosmospy)](https://pypi.org/project/cosmospy)
+[![Build Status](https://github.com/hukkin/clrcosmospy/workflows/Tests/badge.svg?branch=master)](https://github.com/hukkin/cosmospy/actions?query=workflow%3ATests+branch%3Amaster+event%3Apush)
+[![codecov.io](https://codecov.io/gh/hukkin/clrcosmospy/branch/master/graph/badge.svg)](https://codecov.io/gh/hukkin/cosmospy)
+[![PyPI version](https://img.shields.io/pypi/v/clrcosmospy)](https://pypi.org/project/cosmospy)
 
-# cosmospy
+# clrcosmospy
 
 <!--- Don't edit the version line below manually. Let bump2version do it for you. -->
 
@@ -28,10 +28,10 @@
 
 ## Installing<a name="installing"></a>
 
-Installing from PyPI repository (https://pypi.org/project/cosmospy):
+Installing from PyPI repository (https://pypi.org/project/clrcosmospy):
 
 ```bash
-pip install cosmospy
+pip install clrcosmospy
 ```
 
 ## Usage<a name="usage"></a>
@@ -39,7 +39,7 @@ pip install cosmospy
 ### Generating a wallet<a name="generating-a-wallet"></a>
 
 ```python
-from cosmospy import generate_wallet
+from clrcosmospy import generate_wallet
 
 wallet = generate_wallet()
 ```
@@ -61,7 +61,7 @@ The value assigned to `wallet` will be a dictionary just like:
 #### Mnemonic seed to private key<a name="mnemonic-seed-to-private-key"></a>
 
 ```python
-from cosmospy import BIP32DerivationError, seed_to_privkey
+from clrcosmospy import BIP32DerivationError, seed_to_privkey
 
 seed = (
     "teach there dream chase fatigue abandon lava super senior artefact close upgrade"
@@ -75,7 +75,7 @@ except BIP32DerivationError:
 #### Private key to public key<a name="private-key-to-public-key"></a>
 
 ```python
-from cosmospy import privkey_to_pubkey
+from clrcosmospy import privkey_to_pubkey
 
 privkey = bytes.fromhex(
     "6dcd05d7ac71e09d3cf7da666709ebd59362486ff9e99db0e8bc663570515afa"
@@ -86,7 +86,7 @@ pubkey = privkey_to_pubkey(privkey)
 #### Public key to address<a name="public-key-to-address"></a>
 
 ```python
-from cosmospy import pubkey_to_address
+from clrcosmospy import pubkey_to_address
 
 pubkey = bytes.fromhex(
     "03e8005aad74da5a053602f86e3151d4f3214937863a11299c960c28d3609c4775"
@@ -97,7 +97,7 @@ addr = pubkey_to_address(pubkey)
 #### Private key to address<a name="private-key-to-address"></a>
 
 ```python
-from cosmospy import privkey_to_address
+from clrcosmospy import privkey_to_address
 
 privkey = bytes.fromhex(
     "6dcd05d7ac71e09d3cf7da666709ebd59362486ff9e99db0e8bc663570515afa"
@@ -108,7 +108,7 @@ addr = privkey_to_address(privkey)
 ### Signing transactions<a name="signing-transactions"></a>
 
 ```python
-from cosmospy import Transaction
+from clrcosmospy import Transaction
 
 tx = Transaction(
     privkey=bytes.fromhex(

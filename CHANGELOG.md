@@ -15,17 +15,17 @@ This log documents all public API breaking backwards incompatible changes.
 ## 5.0.0
 
 - Added
-  - `cosmospy.seed_to_privkey` function
+  - `clrcosmospy.seed_to_privkey` function
 - Changed
-  - `cosmospy.typing.Wallet` now includes fields "seed" and "derivation_path"
+  - `clrcosmospy.typing.Wallet` now includes fields "seed" and "derivation_path"
   - Made private keys and public keys in all public interfaces type `bytes` instead of hex formatted `str`
 
 ## 4.0.0
 
 - Changed
-  - `cosmospy.transactions` and `cosmospy.addresses` modules have been removed.
-    All of their functions and classes are now importable directly from the `cosmospy` root.
-    That is, users will have to `from cosmospy import Transaction` instead of `from cosmospy.transactions import Transaction`.
+  - `clrcosmospy.transactions` and `cosmospy.addresses` modules have been removed.
+    All of their functions and classes are now importable directly from the `clrcosmospy` root.
+    That is, users will have to `from clrcosmospy import Transaction` instead of `from cosmospy.transactions import Transaction`.
   - `get_pushable_tx` method of the `Transaction` class renamed as `get_pushable`
 
 ## 3.0.0

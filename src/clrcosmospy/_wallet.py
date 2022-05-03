@@ -5,8 +5,8 @@ import ecdsa
 import hdwallets
 import mnemonic
 
-from cosmospy import BIP32DerivationError
-from cosmospy.typing import Wallet
+from clrcosmospy import BIP32DerivationError
+from clrcosmospy.typing import Wallet
 
 DEFAULT_DERIVATION_PATH = "m/44'/118'/0'/0/0"
 DEFAULT_BECH32_HRP = "cosmos"
@@ -37,13 +37,13 @@ def seed_to_privkey(seed: str, path: str = DEFAULT_DERIVATION_PATH) -> bytes:
     """Get a private key from a mnemonic seed and a derivation path.
 
     Assumes a BIP39 mnemonic seed with no passphrase. Raises
-    `cosmospy.BIP32DerivationError` if the resulting private key is
+    `clrcosmospy.BIP32DerivationError` if the resulting private key is
     invalid.
     """
     seed_bytes = mnemonic.Mnemonic.to_seed(seed, passphrase="")
     hd_wallet = hdwallets.BIP32.from_seed(seed_bytes)
     # This can raise a `hdwallets.BIP32DerivationError` (which we alias so
-    # that the same exception type is also in the `cosmospy` namespace).
+    # that the same exception type is also in the `clrcosmospy` namespace).
     derived_privkey = hd_wallet.get_privkey_from_path(path)
 
     return derived_privkey

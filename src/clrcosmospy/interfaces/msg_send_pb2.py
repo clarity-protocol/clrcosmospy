@@ -12,8 +12,8 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
-import cosmospy.interfaces.gogo_pb2 as gogo__pb2
-import cosmospy.interfaces.coin_pb2 as coin__pb2
+import clrcosmospy.interfaces.gogo_pb2 as gogo__pb2
+import clrcosmospy.interfaces.coin_pb2 as coin__pb2
 
 
 DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0emsg_send.proto\x12\x13\x63osmos.bank.v1beta1\x1a\ngogo.proto\x1a\ncoin.proto\"\xca\x01\n\x07MsgSend\x12-\n\x0c\x66rom_address\x18\x01 \x01(\tB\x17\xf2\xde\x1f\x13yaml:\"from_address\"\x12)\n\nto_address\x18\x02 \x01(\tB\x15\xf2\xde\x1f\x11yaml:\"to_address\"\x12[\n\x06\x61mount\x18\x03 \x03(\x0b\x32\x19.cosmos.base.v1beta1.CoinB0\xc8\xde\x1f\x00\xaa\xdf\x1f(github.com/cosmos/cosmos-sdk/types.Coins:\x08\xe8\xa0\x1f\x00\x88\xa0\x1f\x00\x42+Z)github.com/cosmos/cosmos-sdk/x/bank/typesb\x06proto3')
