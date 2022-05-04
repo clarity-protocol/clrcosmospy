@@ -1,0 +1,5 @@
+matplotlib
+hdwallets
+bech32
+mnemonic
+  
